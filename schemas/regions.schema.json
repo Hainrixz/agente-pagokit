@@ -33,7 +33,12 @@
         },
         "comment": {"type": "string"},
         "default_currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
-        "language": {"type": "string"}
+        "language": {"type": "string"},
+        "unsupported": {"type": "boolean"},
+        "reason": {
+          "type": "string",
+          "enum": ["sanctions:OFAC", "sanctions:multilateral", "limited_coverage", "other"]
+        }
       },
       "additionalProperties": false
     }

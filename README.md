@@ -143,12 +143,16 @@ For other stacks (Express, FastAPI, Laravel, Rails) the structure adapts; the pr
 
 ## Roadmap<span style="color:#E3754C">.</span>
 
-| Phase | Status | Scope |
-|---|---|---|
-| **1. Foundation** | ✅ **Shipped** | 4 providers · 2 stacks · 3 ORMs · 7 deterministic validators · 8 compiled combos |
-| **2. LATAM + EU + India** | ⏳ Next | Culqi · Niubiz · Conekta · PayU · ePayco · Transbank · Flow · Kushki · PagBrasil · dLocal · EBANX · Adyen · Mollie · Klarna · Razorpay · Paystack · Stripe Connect · NestJS/FastAPI/Django/Laravel/Rails/Hono stacks |
-| **3. Global + special cases** | Planned | Square · PayPal · Braintree · Coinbase Commerce · Ko-fi · Tap · Yoco · RevenueCat (iOS/Android IAP) · Adyen for Platforms · Mangopay · .NET/SvelteKit/Astro/Go/Cloudflare Workers stacks |
-| **4. Marketplace + observability** | Planned | Submission to Anthropic's community marketplace · opt-in telemetry · monthly CI to refresh provider version pins |
+Phase 2 is focused on completing LATAM coverage; EU / Asia / Africa / MENA are regrouped into Phase 3.
+
+| Phase | Status | Providers | Stacks / ORMs |
+|---|---|---|---|
+| **1. Foundation** | ✅ **Shipped** | Stripe · Mercado Pago · Wompi · Lemon Squeezy → US · CA · MX · CO · AR · BR · CL · PE · UY + EU/UK/AU/IN via MoR fallback | Next.js App Router · Express · Prisma · Drizzle · SQLAlchemy · Vercel · Railway |
+| **2. LATAM core** | ⏳ Next | **Conekta · Culqi · Niubiz · Transbank · Khipu · Pagar.me/PagSeguro · dLocal · EBANX** → MX/PE/CL/BR deep + cross-border LATAM | NestJS · FastAPI |
+| **3. Global core** | Planned | **Mollie · Paddle · GoCardless · Adyen · Razorpay · Xendit · Midtrans · Paystack · Flutterwave · Tap · MyFatoorah · Alipay · WeChat Pay · PayPal · Square · Stripe Connect · RevenueCat (mobile IAP) · Coinbase Commerce · Bridge.xyz (stablecoin)** → EU/UK/IN/SEA/Africa/MENA/China/crypto + marketplaces + mobile IAP | Django · Laravel · Rails · Hono · SvelteKit · Astro · Go |
+| **4. Marketplace + ops** | Planned | Anthropic community marketplace submission · opt-in telemetry · monthly CI to refresh provider version pins · auto-rendered [`docs/COVERAGE.md`](./docs/COVERAGE.md) | — |
+
+Full country × provider coverage: [`skills/payment-advisor/data/regions.json`](./skills/payment-advisor/data/regions.json) → auto-rendered at [`docs/COVERAGE.md`](./docs/COVERAGE.md).
 
 ---
 

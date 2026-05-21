@@ -75,6 +75,14 @@ All entries must match the JSON Schema. Run `npm run validate:data` after editin
 
 If your provider operates locally in a country, add it to that country's `primary_providers[]`. If it's a cross-border MoR, add it to `fallback_cross_border_mor[]` for relevant countries.
 
+After editing `regions.json` or `providers.json`, regenerate the coverage page:
+
+```bash
+npm run generate:coverage   # writes docs/COVERAGE.md
+```
+
+Commit the regenerated `docs/COVERAGE.md` in the same PR. CI will (eventually) fail if it drifts from the data.
+
 ### 3. Template directory at `skills/integration-builder/templates/<provider-id>/`
 
 Minimum files:

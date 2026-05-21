@@ -61,14 +61,14 @@
       "fallback_cross_border_mor": ["lemonsqueezy"],
       "default_currency": "BOB",
       "language": "es",
-      "comment": "Bolivia: limited local coverage in Phase 1. Fallback to MoR (Lemon Squeezy) recommended."
+      "comment": "Bolivia: limited local coverage Phase 1-2. Fallback MoR."
     },
     "EC": {
       "primary_providers": [],
       "fallback_cross_border_mor": ["lemonsqueezy"],
       "default_currency": "USD",
       "language": "es",
-      "comment": "Ecuador: PayPhone/Kushki/Datafast ship in Phase 2. Phase 1 falls back to Lemon Squeezy."
+      "comment": "Ecuador: Kushki/PayPhone/Datafast deferred to Phase 3 (Global core). Fallback MoR."
     },
     "VE": {
       "primary_providers": [],
@@ -76,6 +76,69 @@
       "default_currency": "USD",
       "language": "es",
       "comment": "Venezuela: limited local coverage; crypto and USD informal channels dominate."
+    },
+    "CR": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "CRC",
+      "language": "es",
+      "comment": "Costa Rica: no local provider Phase 1-2. Fallback MoR."
+    },
+    "PA": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "es",
+      "comment": "Panamá: Yappy/ACH Pay out of scope Phase 1-2. Fallback MoR."
+    },
+    "GT": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "GTQ",
+      "language": "es",
+      "comment": "Guatemala: fallback MoR Phase 1-2."
+    },
+    "SV": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "es",
+      "comment": "El Salvador: fallback MoR. N1co (BTC) out of scope."
+    },
+    "HN": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "HNL",
+      "language": "es",
+      "comment": "Honduras: fallback MoR."
+    },
+    "NI": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "NIO",
+      "language": "es",
+      "comment": "Nicaragua: fallback MoR."
+    },
+    "DO": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "DOP",
+      "language": "es",
+      "comment": "Dominican Republic: AZUL/CardNet out of scope. Fallback MoR."
+    },
+    "PY": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "PYG",
+      "language": "es",
+      "comment": "Paraguay: Bancard/Pagopar out of scope. Fallback MoR."
+    },
+    "PR": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "es",
+      "comment": "Puerto Rico: operates under US entities."
     },
     "UK": {
       "primary_providers": ["stripe", "lemonsqueezy"],
@@ -169,6 +232,60 @@
       "fallback_cross_border_mor": ["lemonsqueezy"],
       "default_currency": "HKD",
       "language": "en"
+    },
+    "CU": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "CUP",
+      "language": "es",
+      "unsupported": true,
+      "reason": "sanctions:OFAC",
+      "comment": "Cuba: OFAC SDN. US persons restricted."
+    },
+    "RU": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "RUB",
+      "language": "ru",
+      "unsupported": true,
+      "reason": "sanctions:multilateral",
+      "comment": "Russia: EU/US/UK sanctions. No active provider operates."
+    },
+    "IR": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "IRR",
+      "language": "fa",
+      "unsupported": true,
+      "reason": "sanctions:OFAC",
+      "comment": "Iran: OFAC SDN."
+    },
+    "SY": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "SYP",
+      "language": "ar",
+      "unsupported": true,
+      "reason": "sanctions:OFAC",
+      "comment": "Syria: OFAC SDN."
+    },
+    "KP": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "KPW",
+      "language": "ko",
+      "unsupported": true,
+      "reason": "sanctions:OFAC",
+      "comment": "North Korea: OFAC SDN."
+    },
+    "MM": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "MMK",
+      "language": "my",
+      "unsupported": true,
+      "reason": "sanctions:multilateral",
+      "comment": "Myanmar: limited US/EU sanctions post-2021."
     }
   }
 }

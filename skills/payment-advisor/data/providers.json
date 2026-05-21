@@ -7,6 +7,7 @@
       "last_verified_at": "2026-05-20",
       "verified_by": "human",
       "status": "active",
+      "phase": 1,
       "regions": ["US", "CA", "UK", "EU", "MX", "BR", "SG", "AU", "NZ", "HK", "JP", "IN"],
       "currencies": ["USD", "EUR", "GBP", "CAD", "AUD", "MXN", "BRL", "SGD", "JPY", "HKD", "NZD", "INR"],
       "methods": [
@@ -128,6 +129,7 @@
       "last_verified_at": "2026-05-20",
       "verified_by": "human",
       "status": "active",
+      "phase": 1,
       "regions": ["AR", "BR", "CL", "CO", "MX", "PE", "UY"],
       "currencies": ["ARS", "BRL", "CLP", "COP", "MXN", "PEN", "UYU"],
       "methods": [
@@ -237,6 +239,7 @@
       "last_verified_at": "2026-05-20",
       "verified_by": "human",
       "status": "active",
+      "phase": 1,
       "regions": ["CO"],
       "currencies": ["COP"],
       "methods": [
@@ -334,6 +337,7 @@
       "last_verified_at": "2026-05-20",
       "verified_by": "human",
       "status": "active",
+      "phase": 1,
       "acquired_by": "stripe",
       "successor": "stripe-managed-payments",
       "regions": [

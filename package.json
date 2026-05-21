@@ -6,7 +6,8 @@
   "scripts": {
     "validate:data": "node scripts/validate-data.js",
     "validate:plugin": "bash scripts/validate-plugin.sh",
-    "test:validators": "bash scripts/test-validators.sh"
+    "test:validators": "bash scripts/test-validators.sh",
+    "generate:coverage": "node scripts/generate-coverage.js"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

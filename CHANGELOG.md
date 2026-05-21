@@ -53,4 +53,21 @@ Initial public release. Phase 1 scope is intentionally narrow but verified end-t
 
 ## [Unreleased]
 
-Nothing yet. Next milestones live in [`ROADMAP`](./README.md#roadmap) Phase 2.
+### Changed
+
+- **Roadmap rebalanced.** Phase 2 is now exclusively LATAM core (Conekta · Culqi · Niubiz · Transbank · Khipu · Pagar.me/PagSeguro · dLocal · EBANX). Phase 3 regroups EU + Asia + Africa + MENA + China + crypto + marketplaces + mobile IAP under a single "Global core" header.
+- **Stacks/ORMs extracted** to a dedicated column in the roadmap table so the provider narrative isn't diluted.
+- Comment for `BO` and `EC` in `regions.json` updated to reflect new phase scope.
+
+### Added
+
+- 9 new LATAM regions in `regions.json`: Costa Rica (CR), Panama (PA), Guatemala (GT), El Salvador (SV), Honduras (HN), Nicaragua (NI), Dominican Republic (DO), Paraguay (PY), Puerto Rico (PR).
+- 6 sanctioned regions: Cuba (CU), Russia (RU), Iran (IR), Syria (SY), North Korea (KP), Myanmar (MM) — all with `unsupported: true` and an explicit `reason`.
+- `phase` field on each provider in `providers.json` (backfilled to `1` for the 4 shipped providers).
+- Optional `unsupported` + `reason` fields in `regions.schema.json`, with `reason` constrained to `sanctions:OFAC | sanctions:multilateral | limited_coverage | other`.
+- `scripts/generate-coverage.js` + `npm run generate:coverage`. Renders [`docs/COVERAGE.md`](./docs/COVERAGE.md) from the JSON data files — single source of truth, no markdown drift.
+- `docs/COVERAGE.md`: country × provider matrix (19 LATAM · 17 global · 6 unsupported).
+
+### Removed (from roadmap)
+
+- Braintree (rolled into PayPal), Mangopay (redundant with Stripe Connect), Ko-fi (creator-payments, low traction), Yoco (covered by Paystack/Flutterwave in NG/ZA), Flask (covered by FastAPI), .NET, Cloudflare Workers. Open an issue if any of these blocks real adoption.
