@@ -8,6 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-000?style=flat-square)](../LICENSE)
 [![Phase 1](https://img.shields.io/badge/Phase_1-shipped-22c55e?style=flat-square)](#roadmap)
 [![Tests](https://img.shields.io/badge/validators-42%2F42_passing-22c55e?style=flat-square)](../hooks/checks/__tests__)
+[![CI](https://github.com/Hainrixz/agente-pagokit/actions/workflows/test.yml/badge.svg)](https://github.com/Hainrixz/agente-pagokit/actions/workflows/test.yml)
 
 [`tododeia.com`](https://tododeia.com) · [`@soyenriquerocha`](https://instagram.com/soyenriquerocha) · `enrique@tododeia.com`
 
@@ -153,6 +154,8 @@ Phase 2 está enfocada en completar la cobertura LATAM; EU / Asia / Africa / MEN
 
 Cobertura completa por país × proveedor: [`skills/payment-advisor/data/regions.json`](../skills/payment-advisor/data/regions.json) → auto-renderizado en [`docs/COVERAGE.md`](../docs/COVERAGE.md).
 
+Historial de releases: [`CHANGELOG.md`](../CHANGELOG.md).
+
 ---
 
 ## Desarrollo<span style="color:#E3754C">.</span>
@@ -164,8 +167,14 @@ npm install
 # Valida data files contra schemas
 npm run validate:data
 
+# Pre-flight completo: validación de data + `claude plugin validate`
+npm run validate:plugin
+
 # Corre los 42 tests de validators (4-6 fixtures por check)
 npm run test:validators
+
+# Regenera docs/COVERAGE.md desde regions.json + providers.json
+npm run generate:coverage
 
 # Wrapper para probar el plugin en un proyecto dummy
 ./scripts/dev-link.sh /path/al/proyecto-test

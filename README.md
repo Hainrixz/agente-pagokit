@@ -154,6 +154,8 @@ Phase 2 is focused on completing LATAM coverage; EU / Asia / Africa / MENA are r
 
 Full country × provider coverage: [`skills/payment-advisor/data/regions.json`](./skills/payment-advisor/data/regions.json) → auto-rendered at [`docs/COVERAGE.md`](./docs/COVERAGE.md).
 
+Release history: [`CHANGELOG.md`](./CHANGELOG.md).
+
 ---
 
 ## Development<span style="color:#E3754C">.</span>
@@ -165,8 +167,14 @@ npm install
 # Validate data files against schemas
 npm run validate:data
 
+# Full pre-flight: data validation + `claude plugin validate`
+npm run validate:plugin
+
 # Run the 42 validator tests (4-6 fixtures per check)
 npm run test:validators
+
+# Regenerate docs/COVERAGE.md from regions.json + providers.json
+npm run generate:coverage
 
 # Wrapper to test the plugin in a dummy project
 ./scripts/dev-link.sh /path/to/test-project
@@ -179,7 +187,7 @@ agente-pagokit/
 ├── .claude-plugin/plugin.json          Manifest
 ├── commands/                           /pagokit:start · :test · :doctor
 ├── skills/                             5 skills (advisor, analyzer, builder, verifier, doctor)
-│   └── integration-builder/templates/  46 templates (per-provider + stack + db + deploy + compiled)
+│   └── integration-builder/templates/  47 templates (per-provider + stack + db + deploy + compiled)
 ├── agents/integration-specialist.md    Implementer subagent
 ├── hooks/
 │   ├── pagokit-validate.js             Dispatcher
