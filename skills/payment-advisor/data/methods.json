@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../schemas/methods.schema.json",
+  "methods": [
+    {"id": "card", "label": "Credit/Debit Card", "category": "card", "regions": ["GLOBAL"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "apple_pay", "label": "Apple Pay", "category": "wallet", "regions": ["GLOBAL"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "google_pay", "label": "Google Pay", "category": "wallet", "regions": ["GLOBAL"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "paypal", "label": "PayPal", "category": "wallet", "regions": ["GLOBAL"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "link", "label": "Stripe Link", "category": "wallet", "regions": ["US", "EU", "UK"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "mercadopago_wallet", "label": "Mercado Pago Wallet", "category": "wallet", "regions": ["AR", "BR", "CL", "CO", "MX", "PE", "UY"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "sepa_debit", "label": "SEPA Direct Debit", "category": "direct_debit", "regions": ["EU"], "settlement_speed": "weekly", "irreversible": false},
+    {"id": "ach_debit", "label": "ACH Direct Debit", "category": "direct_debit", "regions": ["US"], "settlement_speed": "weekly", "irreversible": false},
+    {"id": "bancolombia_transfer", "label": "Bancolombia Transfer", "category": "bank_transfer", "regions": ["CO"], "settlement_speed": "same_day", "irreversible": true},
+    {"id": "spei", "label": "SPEI", "category": "bank_transfer", "regions": ["MX"], "settlement_speed": "instant", "irreversible": true},
+    {"id": "pse", "label": "PSE (Pagos Seguros en Línea)", "category": "bank_transfer", "regions": ["CO"], "settlement_speed": "same_day", "irreversible": true},
+    {"id": "pix", "label": "Pix", "category": "qr", "regions": ["BR"], "settlement_speed": "instant", "irreversible": true, "notes": "Brazilian instant payment rail; no chargeback."},
+    {"id": "bizum", "label": "Bizum", "category": "qr", "regions": ["ES"], "settlement_speed": "instant", "irreversible": true},
+    {"id": "nequi", "label": "Nequi", "category": "wallet", "regions": ["CO"], "settlement_speed": "instant", "irreversible": true},
+    {"id": "bancolombia_button", "label": "Botón Bancolombia", "category": "bank_transfer", "regions": ["CO"], "settlement_speed": "same_day", "irreversible": true},
+    {"id": "oxxo", "label": "OXXO (cash voucher)", "category": "cash_voucher", "regions": ["MX"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "boleto", "label": "Boleto Bancário", "category": "cash_voucher", "regions": ["BR"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "efecty", "label": "Efecty", "category": "cash_voucher", "regions": ["CO"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "baloto", "label": "Baloto", "category": "cash_voucher", "regions": ["CO"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "su_red", "label": "Su Red", "category": "cash_voucher", "regions": ["CO"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "pago_facil", "label": "Pago Fácil", "category": "cash_voucher", "regions": ["AR"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "rapipago", "label": "Rapipago", "category": "cash_voucher", "regions": ["AR"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "servipag", "label": "Servipag", "category": "cash_voucher", "regions": ["CL"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "pagoefectivo", "label": "PagoEfectivo", "category": "cash_voucher", "regions": ["PE"], "settlement_speed": "next_day", "irreversible": true},
+    {"id": "klarna", "label": "Klarna (BNPL)", "category": "bnpl", "regions": ["US", "UK", "EU", "AU"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "afterpay", "label": "Afterpay / Clearpay", "category": "bnpl", "regions": ["US", "UK", "AU", "NZ", "CA"], "settlement_speed": "next_day", "irreversible": false},
+    {"id": "usdc", "label": "USDC Stablecoin", "category": "crypto", "regions": ["GLOBAL"], "settlement_speed": "instant", "irreversible": true}
+  ]
+}

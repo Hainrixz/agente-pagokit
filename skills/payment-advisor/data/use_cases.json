@@ -1,0 +1,66 @@
+{
+  "$schema": "../../../schemas/use_cases.schema.json",
+  "use_cases": {
+    "marketplace": {
+      "description": "The user runs a platform where multiple third-party sellers collect payments through it (Stripe Connect / Adyen for Platforms / Mangopay use case).",
+      "trigger_heuristics": [
+        "table:vendors",
+        "table:sellers",
+        "table:merchants",
+        "model:Vendor",
+        "model:Seller",
+        "model:Merchant",
+        "route:/seller/*",
+        "route:/vendors/*",
+        "package:@stripe/connect"
+      ],
+      "confidence_threshold": 0.7,
+      "ask_if_below_threshold": "Do multiple independent sellers collect payments through your platform? / ¿Cobran múltiples vendedores independientes a través de tu plataforma?",
+      "required_provider_features": ["supports.marketplace_payouts"],
+      "recommended_providers_ranked": ["stripe"],
+      "template_path": "marketplace/",
+      "context_note": "Phase 1 supports Stripe Connect only. Adyen for Platforms and Mangopay ship in Phase 2/3."
+    },
+    "mobile_digital_goods": {
+      "description": "A mobile app (iOS / Android) selling digital goods or subscriptions. Apple/Google require their IAP system for digital content (post-Epic v. Apple 2025 there is a US carveout for external links, but with an entitlement requirement).",
+      "trigger_heuristics": [
+        "package:react-native",
+        "package:expo",
+        "file:Info.plist",
+        "file:AndroidManifest.xml",
+        "config:flutter.yaml",
+        "dependency:@react-native-firebase/app"
+      ],
+      "confidence_threshold": 0.9,
+      "context_note": "Apple/Google require IAP for digital content sold inside mobile apps. Post-Epic v. Apple (2025) ruling, US apps may use external payment links with an Apple entitlement. RevenueCat / Adapty wrap IAP for cross-platform projects. Phase 1 detects this case and warns; full IAP templates ship in Phase 3.",
+      "recommended_providers_ranked": ["stripe"],
+      "ask_if_below_threshold": "Is your app a mobile native app selling digital content? / ¿Es una app móvil nativa vendiendo contenido digital?"
+    },
+    "save_card_subscription": {
+      "description": "The app keeps a card on file for recurring billing or one-click purchases (SetupIntent on Stripe, vault tokens on Braintree, etc.).",
+      "trigger_heuristics": [
+        "model:Subscription",
+        "model:Plan",
+        "table:plans",
+        "table:subscriptions",
+        "route:/billing/*"
+      ],
+      "confidence_threshold": 0.6,
+      "ask_if_below_threshold": "Do you need to save the customer's card to charge again later? / ¿Necesitas guardar la tarjeta para cobrar de nuevo en el futuro?",
+      "required_provider_features": ["supports.save_card", "supports.subscriptions"],
+      "recommended_providers_ranked": ["stripe", "mercadopago", "lemonsqueezy"]
+    },
+    "creator_donations": {
+      "description": "Creators / individuals collecting tips or donations without operating a full e-commerce. Hosted-checkout providers usually fit better than processor integrations.",
+      "trigger_heuristics": [
+        "file:Patreon",
+        "route:/tip/*",
+        "route:/donate/*"
+      ],
+      "confidence_threshold": 0.5,
+      "ask_if_below_threshold": "Is this a creator/donation profile rather than a product checkout? / ¿Es un perfil de creator o donaciones, no un checkout de producto?",
+      "recommended_providers_ranked": ["lemonsqueezy", "stripe"],
+      "context_note": "Ko-fi / BuyMeACoffee / Polar specialized donation providers ship in Phase 3."
+    }
+  }
+}

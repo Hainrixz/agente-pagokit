@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Hainrixz/agente-pagokit/schemas/regions.schema.json",
+  "title": "PagoKit Regions",
+  "description": "Schema for regions.json. Each ISO-2 country code maps to ranked primary providers and a cross-border MoR fallback.",
+  "type": "object",
+  "required": ["regions"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "regions": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Z]{2}$": {"$ref": "#/$defs/region"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "region": {
+      "type": "object",
+      "required": ["primary_providers", "fallback_cross_border_mor"],
+      "properties": {
+        "primary_providers": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Provider ids ranked by relevance. May be empty for countries with no local coverage."
+        },
+        "fallback_cross_border_mor": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "comment": {"type": "string"},
+        "default_currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "language": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

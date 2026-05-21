@@ -1,0 +1,25 @@
+{
+  "name": "pagokit",
+  "version": "0.1.0",
+  "description": "Payment integration advisor + implementer for Claude Code. Analyzes your project, asks 3 questions (country, recurrence, local methods), recommends the best provider (Stripe, Mercado Pago, Wompi, Lemon Squeezy and more), and generates a production-ready integration with frontend, signed webhook, DB schema, customer portal and refund endpoint. Local-first, security-enforced via PostToolUse hooks. Bilingual EN/ES — output auto-detects user language.",
+  "author": {
+    "name": "Enrique Rocha",
+    "email": "enrique@tododeia.com",
+    "url": "https://tododeia.com"
+  },
+  "homepage": "https://tododeia.com",
+  "repository": "https://github.com/Hainrixz/agente-pagokit.git",
+  "license": "MIT",
+  "keywords": [
+    "payments",
+    "stripe",
+    "mercadopago",
+    "wompi",
+    "lemonsqueezy",
+    "latam",
+    "checkout",
+    "webhook",
+    "subscription",
+    "claude-code-plugin"
+  ]
+}

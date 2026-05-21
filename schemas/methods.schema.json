@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Hainrixz/agente-pagokit/schemas/methods.schema.json",
+  "title": "PagoKit Payment Methods",
+  "description": "Schema for methods.json. Each method is a first-class citizen (pix, bizum, oxxo, sepa, etc.).",
+  "type": "object",
+  "required": ["methods"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "methods": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/method"},
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "method": {
+      "type": "object",
+      "required": ["id", "label", "category", "regions"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "label": {"type": "string"},
+        "category": {"enum": ["card", "wallet", "bank_transfer", "cash_voucher", "qr", "crypto", "bnpl", "direct_debit"]},
+        "regions": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "settlement_speed": {"enum": ["instant", "same_day", "next_day", "weekly"]},
+        "irreversible": {"type": "boolean", "description": "True for Pix, bank transfers — no chargeback risk."},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

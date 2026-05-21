@@ -1,0 +1,68 @@
+name: Provider request
+description: Request support for a new payment provider
+title: "[provider] Add support for "
+labels: ["provider-request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Each new provider needs 4 pieces (see [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md#adding-a-new-payment-provider)). The more of these you can fill in, the faster the addition.
+
+  - type: input
+    id: name
+    attributes:
+      label: Provider name
+      placeholder: "Niubiz"
+    validations:
+      required: true
+
+  - type: input
+    id: docs
+    attributes:
+      label: Official developer docs URL
+      placeholder: "https://docs.niubiz.com.pe"
+    validations:
+      required: true
+
+  - type: textarea
+    id: regions
+    attributes:
+      label: Regions + currencies supported
+      placeholder: |
+        Regions: PE
+        Currencies: PEN, USD
+    validations:
+      required: true
+
+  - type: textarea
+    id: methods
+    attributes:
+      label: Payment methods
+      placeholder: "card, pagoefectivo, ..."
+
+  - type: textarea
+    id: webhook
+    attributes:
+      label: Webhook signature details
+      description: How does the provider sign webhook events? (header name, algorithm, timestamp included?)
+      placeholder: |
+        Header: X-NIUBIZ-SIGNATURE
+        Algorithm: HMAC-SHA256
+        Includes timestamp: yes, in body
+        Tolerance: 5 min
+    validations:
+      required: true
+
+  - type: textarea
+    id: kyc
+    attributes:
+      label: KYC requirements
+      description: Can individuals (personas naturales) sign up, or only registered businesses?
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this provider matters
+      description: Specific user demand, market share, or use case it unlocks.
+    validations:
+      required: true

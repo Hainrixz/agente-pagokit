@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Hainrixz/agente-pagokit/schemas/use_cases.schema.json",
+  "title": "PagoKit Use Cases",
+  "description": "Schema for use_cases.json. Each use case has formal trigger_heuristics (prefix:value strings) that project-analyzer interprets.",
+  "type": "object",
+  "required": ["use_cases"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "use_cases": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {"$ref": "#/$defs/use_case"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "use_case": {
+      "type": "object",
+      "required": ["trigger_heuristics", "confidence_threshold"],
+      "properties": {
+        "description": {"type": "string"},
+        "trigger_heuristics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(table|model|route|package|config|file|env|dependency):.+$"
+          },
+          "minItems": 1
+        },
+        "confidence_threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "ask_if_below_threshold": {"type": "string"},
+        "context_note": {"type": "string"},
+        "required_provider_features": {"type": "array", "items": {"type": "string"}},
+        "recommended_providers_ranked": {"type": "array", "items": {"type": "string"}},
+        "template_path": {"type": "string"},
+        "regions": {
+          "type": "object",
+          "patternProperties": {
+            "^[A-Z]{2}$": {"type": "array", "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

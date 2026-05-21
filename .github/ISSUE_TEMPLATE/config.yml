@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Hainrixz/agente-pagokit/security/advisories/new
+    about: Report a security issue privately. Do NOT open a public issue.
+  - name: Author / consulting
+    url: https://tododeia.com
+    about: AI consulting, agents, automations, sprints in Miami (tododeia.com)
+  - name: Direct message
+    url: https://instagram.com/soyenriquerocha
+    about: Quick question? DM @soyenriquerocha

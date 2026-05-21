@@ -1,0 +1,44 @@
+name: Feature request
+description: Suggest an improvement to PagoKit
+title: "[feat] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. For new **payment provider** requests, use the "Provider request" template instead.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: The user pain or workflow gap you're hitting.
+      placeholder: |
+        When I try to..., PagoKit doesn't...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should PagoKit do? Sketch the UX or API if you can.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other ways to solve this, and why they're worse.
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Suggested roadmap phase
+      options:
+        - Phase 1 (urgent / blocker)
+        - Phase 2 (LATAM/EU/India expansion)
+        - Phase 3 (Global + special cases)
+        - Phase 4 (Marketplace + observability)
+        - Don't know

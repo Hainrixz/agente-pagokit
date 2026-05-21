@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Validate schemas + run validator tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dev dependencies
+        run: npm ci
+
+      - name: Validate data files against JSON Schemas
+        run: npm run validate:data
+
+      - name: Run validator unit tests
+        run: npm run test:validators
+
+      - name: Lint plugin manifest with Claude Code (best-effort)
+        run: |
+          if command -v claude >/dev/null 2>&1; then
+            claude plugin validate .
+          else
+            echo "::notice::Claude Code CLI not installed in CI runner — manifest validation skipped. Maintainer runs 'claude plugin validate .' locally."
+          fi
+        continue-on-error: true

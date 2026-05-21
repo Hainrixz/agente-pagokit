@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.env.local
+.env.*.local
+.idea/
+.vscode/
+coverage/
+dist/
+
+# PagoKit audit logs and session markers (local-only, not for the plugin repo)
+.pagokit/

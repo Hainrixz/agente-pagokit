@@ -1,0 +1,437 @@
+{
+  "$schema": "../../../schemas/providers.schema.json",
+  "providers": [
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "last_verified_at": "2026-05-20",
+      "verified_by": "human",
+      "status": "active",
+      "regions": ["US", "CA", "UK", "EU", "MX", "BR", "SG", "AU", "NZ", "HK", "JP", "IN"],
+      "currencies": ["USD", "EUR", "GBP", "CAD", "AUD", "MXN", "BRL", "SGD", "JPY", "HKD", "NZD", "INR"],
+      "methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sepa_debit",
+        "ach_debit",
+        "klarna",
+        "afterpay",
+        "oxxo",
+        "boleto",
+        "pix",
+        "bizum",
+        "usdc",
+        "link"
+      ],
+      "supports": {
+        "subscriptions": true,
+        "one_time": true,
+        "marketplace_payouts": true,
+        "merchant_of_record": false,
+        "tokenization_owner": "shared",
+        "save_card": true,
+        "iap_compatible": false,
+        "agentic_toolkit": true,
+        "stablecoin_settlement": true,
+        "cash_voucher": {"MX": "oxxo", "BR": "boleto"},
+        "installments": {"BR": true, "MX": true},
+        "qr": {"BR": "pix", "ES": "bizum"}
+      },
+      "tax_handling": {
+        "stripe_tax_available": true,
+        "automated_collection": true,
+        "vat_eu": true,
+        "sales_tax_us": true
+      },
+      "fees": {
+        "card_domestic_pct": 2.9,
+        "card_domestic_fixed_usd": 0.30,
+        "card_international_pct": 3.9,
+        "eea_card_pct": 1.4,
+        "eea_card_fixed_eur": 0.25,
+        "usdc_pct": 1.5,
+        "notes": "Fees vary by country. EEA cards 1.4% + €0.25, UK 1.5% + 20p, US/Canada 2.9% + $0.30."
+      },
+      "kyc": {
+        "individual_allowed": true,
+        "business_required_countries": ["BR"],
+        "time_to_activate_days": "1-7"
+      },
+      "secret_key_pattern": "^sk_(test|live)_[A-Za-z0-9]{20,}$",
+      "publishable_key_pattern": "^pk_(test|live)_[A-Za-z0-9]{20,}$",
+      "developer_experience": {
+        "sdk_quality": 5,
+        "docs_quality": 5,
+        "sandbox": true,
+        "test_keys_prefix": "sk_test_",
+        "live_keys_prefix": "sk_live_"
+      },
+      "sdks": {
+        "node": {"pkg": "stripe", "version_pinned": true},
+        "python": {"pkg": "stripe", "version_pinned": true},
+        "php": {"pkg": "stripe/stripe-php"},
+        "ruby": {"pkg": "stripe"},
+        "go": {"pkg": "github.com/stripe/stripe-go"},
+        "java": {"pkg": "com.stripe:stripe-java"}
+      },
+      "api_version": "2025-04-30.basil",
+      "recommended_api_flow": "payment_intents",
+      "deprecated_flows": ["charges.create"],
+      "webhook": {
+        "signature_header": "Stripe-Signature",
+        "algorithm": "HMAC-SHA256-with-timestamp",
+        "signature_includes_timestamp": true,
+        "recommended_tolerance_seconds": 300,
+        "replay_mitigation_strategy": "timestamp-window",
+        "required_events_minimum": [
+          "payment_intent.succeeded",
+          "payment_intent.payment_failed",
+          "charge.refunded",
+          "charge.dispute.created",
+          "invoice.payment_failed",
+          "customer.subscription.deleted",
+          "customer.subscription.updated"
+        ],
+        "expected_filenames": ["webhook", "events", "stripe-webhook"],
+        "ip_allowlist_available": true
+      },
+      "frontend_options": ["hosted", "embedded", "elements"],
+      "anti_patterns": [
+        "Do not use stripe.charges.create — it is the legacy Charges API. Use payment_intents instead so 3DS/SCA works.",
+        "Do not call request.json() before signature verification — Stripe needs the raw body."
+      ],
+      "test_cards": {
+        "success": "4242 4242 4242 4242",
+        "decline": "4000 0000 0000 0002",
+        "insufficient_funds": "4000 0000 0000 9995",
+        "three_d_secure": "4000 0025 0000 3155"
+      },
+      "docs_url": "https://stripe.com/docs",
+      "score_modifiers": {
+        "us_saas": 3,
+        "eu_subscription": 2,
+        "digital_goods_cross_border": -1,
+        "wants_no_fiscal_overhead": -2,
+        "marketplace_multi_seller": 2,
+        "ios_digital_goods": -5,
+        "latam_individual_seller": -2,
+        "needs_cash_payment_only": -3
+      },
+      "notes": [
+        "Stripe acquired Lemon Squeezy in July 2024 and launched Stripe Managed Payments (preview) in April 2026 as the MoR successor."
+      ]
+    },
+    {
+      "id": "mercadopago",
+      "name": "Mercado Pago",
+      "last_verified_at": "2026-05-20",
+      "verified_by": "human",
+      "status": "active",
+      "regions": ["AR", "BR", "CL", "CO", "MX", "PE", "UY"],
+      "currencies": ["ARS", "BRL", "CLP", "COP", "MXN", "PEN", "UYU"],
+      "methods": [
+        "card",
+        "pix",
+        "boleto",
+        "oxxo",
+        "spei",
+        "pse",
+        "efecty",
+        "pago_facil",
+        "rapipago",
+        "servipag",
+        "pagoefectivo",
+        "mercadopago_wallet"
+      ],
+      "supports": {
+        "subscriptions": true,
+        "one_time": true,
+        "marketplace_payouts": true,
+        "merchant_of_record": false,
+        "tokenization_owner": "shared",
+        "save_card": true,
+        "iap_compatible": false,
+        "agentic_toolkit": false,
+        "stablecoin_settlement": false,
+        "cash_voucher": {
+          "MX": "oxxo",
+          "BR": "boleto",
+          "AR": "pago_facil",
+          "PE": "pagoefectivo"
+        },
+        "installments": {"BR": true, "MX": true, "AR": true},
+        "qr": {"BR": "pix"}
+      },
+      "tax_handling": {
+        "automated_collection": false,
+        "notes": "User is responsible for local invoicing (CFDI MX, NF-e BR, etc.)."
+      },
+      "fees": {
+        "card_domestic_pct": 3.49,
+        "notes": "Fees vary by country and product (Checkout Pro vs Custom). MX ~3.49% + IVA, AR ~6.79% release T+0. Cash vouchers and Pix may have different rates."
+      },
+      "kyc": {
+        "individual_allowed": true,
+        "time_to_activate_days": "0-1"
+      },
+      "secret_key_pattern": "^(APP_USR|TEST)-[A-Za-z0-9]{16,}-[0-9]{6,}-[a-z0-9]{16,}-[0-9]+$",
+      "publishable_key_pattern": "^(APP_USR|TEST)-[a-z0-9-]{30,}$",
+      "developer_experience": {
+        "sdk_quality": 4,
+        "docs_quality": 4,
+        "sandbox": true,
+        "test_keys_prefix": "TEST-",
+        "live_keys_prefix": "APP_USR-"
+      },
+      "sdks": {
+        "node": {"pkg": "mercadopago"},
+        "python": {"pkg": "mercadopago"},
+        "php": {"pkg": "mercadopago/dx-php"},
+        "ruby": {"pkg": "mercadopago-sdk"},
+        "java": {"pkg": "com.mercadopago:sdk-java"},
+        "go": {"pkg": "github.com/mercadopago/sdk-go"}
+      },
+      "api_version": "v1",
+      "recommended_api_flow": "preferences_checkout_pro",
+      "webhook": {
+        "signature_header": "x-signature",
+        "algorithm": "HMAC-SHA256-with-id-and-timestamp",
+        "signature_includes_timestamp": true,
+        "recommended_tolerance_seconds": 300,
+        "replay_mitigation_strategy": "both",
+        "required_events_minimum": [
+          "payment.created",
+          "payment.updated"
+        ],
+        "expected_filenames": [
+          "webhook",
+          "notifications",
+          "ipn",
+          "mercadopago-webhook"
+        ],
+        "ip_allowlist_available": false
+      },
+      "frontend_options": ["hosted", "embedded", "bricks"],
+      "anti_patterns": [
+        "Do not omit the X-Idempotency-Key header on POST /payments — duplicate charges are common without it.",
+        "Sandbox availability varies by country; always verify the test environment for your target country."
+      ],
+      "test_cards": {
+        "success": "5031 7557 3453 0604",
+        "decline": "5031 4332 1540 6351",
+        "three_d_secure": "5031 7557 3453 0604"
+      },
+      "docs_url": "https://www.mercadopago.com/developers/en",
+      "score_modifiers": {
+        "latam_individual_seller": 3,
+        "needs_cash_payment_only": 2,
+        "us_saas": -3,
+        "marketplace_multi_seller": 1,
+        "digital_goods_cross_border": -1
+      }
+    },
+    {
+      "id": "wompi",
+      "name": "Wompi",
+      "last_verified_at": "2026-05-20",
+      "verified_by": "human",
+      "status": "active",
+      "regions": ["CO"],
+      "currencies": ["COP"],
+      "methods": [
+        "card",
+        "pse",
+        "nequi",
+        "bancolombia_button",
+        "bancolombia_transfer",
+        "efecty",
+        "baloto",
+        "su_red"
+      ],
+      "supports": {
+        "subscriptions": false,
+        "one_time": true,
+        "marketplace_payouts": false,
+        "merchant_of_record": false,
+        "tokenization_owner": "provider",
+        "save_card": true,
+        "iap_compatible": false,
+        "agentic_toolkit": false,
+        "stablecoin_settlement": false
+      },
+      "tax_handling": {
+        "automated_collection": false,
+        "notes": "Merchant handles Colombian IVA and DIAN reporting."
+      },
+      "fees": {
+        "card_domestic_pct": 2.65,
+        "card_domestic_fixed_cop": 900,
+        "notes": "Card 2.65% + 900 COP + IVA. PSE 1.65% + 1500 COP. Nequi ~2.99%. Settlement T+1 to Bancolombia."
+      },
+      "kyc": {
+        "individual_allowed": true,
+        "individual_constraints": {
+          "requires_bancolombia_account_with_30_day_history": true
+        },
+        "time_to_activate_days": "1-3"
+      },
+      "secret_key_pattern": "^prv_(test|prod)_[A-Za-z0-9]{20,}$",
+      "publishable_key_pattern": "^pub_(test|prod)_[A-Za-z0-9]{20,}$",
+      "developer_experience": {
+        "sdk_quality": 3,
+        "docs_quality": 4,
+        "sandbox": true,
+        "test_keys_prefix": "prv_test_",
+        "live_keys_prefix": "prv_prod_"
+      },
+      "sdks": {
+        "node": {"pkg": "@wompi/wompi"},
+        "php": {"pkg": "wompi/wompi-php"}
+      },
+      "api_version": "v1",
+      "recommended_api_flow": "transactions_v1",
+      "webhook": {
+        "signature_header": "Event-Signature",
+        "algorithm": "SHA-256-checksum",
+        "signature_includes_timestamp": true,
+        "recommended_tolerance_seconds": 600,
+        "replay_mitigation_strategy": "both",
+        "required_events_minimum": ["transaction.updated"],
+        "expected_filenames": [
+          "webhook",
+          "events",
+          "callback",
+          "wompi-webhook"
+        ],
+        "ip_allowlist_available": false
+      },
+      "frontend_options": ["widget", "redirect"],
+      "anti_patterns": [
+        "Do not implement a card tokenization endpoint on your backend — Wompi tokenizes client-side via the Widget.",
+        "Never expose the private key (prv_) to the browser. Only the public key (pub_) is safe client-side."
+      ],
+      "test_cards": {
+        "success": "4242 4242 4242 4242",
+        "decline": "4111 1111 1111 1112"
+      },
+      "docs_url": "https://docs.wompi.co",
+      "score_modifiers": {
+        "latam_individual_seller": 1,
+        "needs_cash_payment_only": 2,
+        "marketplace_multi_seller": -3,
+        "us_saas": -5,
+        "eu_subscription": -5
+      },
+      "notes": [
+        "Operated by Bancolombia. Personas naturales need a Bancolombia account with 30+ days of activity to settle funds.",
+        "No native subscription support — recurring billing requires implementing your own scheduler with saved cards."
+      ]
+    },
+    {
+      "id": "lemonsqueezy",
+      "name": "Lemon Squeezy",
+      "last_verified_at": "2026-05-20",
+      "verified_by": "human",
+      "status": "active",
+      "acquired_by": "stripe",
+      "successor": "stripe-managed-payments",
+      "regions": [
+        "US", "CA", "UK", "EU", "AU", "NZ", "JP", "MX", "BR", "CO", "AR", "CL", "PE", "ZA", "NG", "KE", "IN", "SG", "HK"
+      ],
+      "currencies": [
+        "USD", "EUR", "GBP", "CAD", "AUD", "JPY", "MXN", "BRL", "COP", "ARS", "CLP", "PEN", "ZAR", "NGN", "KES", "INR", "SGD", "HKD"
+      ],
+      "methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "paypal",
+        "klarna",
+        "afterpay"
+      ],
+      "supports": {
+        "subscriptions": true,
+        "one_time": true,
+        "marketplace_payouts": false,
+        "merchant_of_record": true,
+        "tokenization_owner": "provider",
+        "save_card": true,
+        "iap_compatible": false,
+        "agentic_toolkit": false,
+        "stablecoin_settlement": false
+      },
+      "tax_handling": {
+        "automated_collection": true,
+        "vat_eu": true,
+        "sales_tax_us": true,
+        "gst_au_in_nz": true,
+        "notes": "Full Merchant of Record — Lemon Squeezy handles VAT, sales tax, GST collection and remittance globally."
+      },
+      "fees": {
+        "card_domestic_pct": 5.0,
+        "card_domestic_fixed_usd": 0.50,
+        "notes": "5% + $0.50 per transaction (MoR-inclusive). Plus payout fees by region."
+      },
+      "kyc": {
+        "individual_allowed": true,
+        "time_to_activate_days": "0-1"
+      },
+      "secret_key_pattern": "^lmnsq_(test|live)_[A-Za-z0-9_-]{40,}$",
+      "developer_experience": {
+        "sdk_quality": 4,
+        "docs_quality": 5,
+        "sandbox": true,
+        "test_keys_prefix": "lmnsq_test_",
+        "live_keys_prefix": "lmnsq_live_"
+      },
+      "sdks": {
+        "node": {"pkg": "@lemonsqueezy/lemonsqueezy.js"},
+        "python": {"pkg": "lemonsqueezy-python"}
+      },
+      "api_version": "v1",
+      "recommended_api_flow": "checkout_overlay",
+      "webhook": {
+        "signature_header": "X-Signature",
+        "algorithm": "HMAC-SHA256",
+        "signature_includes_timestamp": false,
+        "replay_mitigation_strategy": "event-id-dedup",
+        "required_events_minimum": [
+          "order_created",
+          "subscription_created",
+          "subscription_updated",
+          "subscription_cancelled",
+          "subscription_payment_failed",
+          "subscription_payment_refunded"
+        ],
+        "expected_filenames": [
+          "webhook",
+          "lemonsqueezy-webhook",
+          "ls-webhook"
+        ],
+        "ip_allowlist_available": false
+      },
+      "frontend_options": ["hosted", "embedded"],
+      "anti_patterns": [
+        "Do not try to collect tax IDs yourself for VAT — Lemon Squeezy does it as the merchant of record.",
+        "Webhooks are not timestamped — always dedup by event id stored in your DB."
+      ],
+      "test_cards": {
+        "success": "4242 4242 4242 4242",
+        "decline": "4000 0000 0000 0002"
+      },
+      "docs_url": "https://docs.lemonsqueezy.com",
+      "score_modifiers": {
+        "digital_goods_cross_border": 4,
+        "wants_no_fiscal_overhead": 4,
+        "latam_individual_seller": 2,
+        "us_saas": 1,
+        "needs_cash_payment_only": -5,
+        "marketplace_multi_seller": -4
+      },
+      "notes": [
+        "Acquired by Stripe in July 2024. Still operates independently in 2026. Stripe Managed Payments is the successor for new MoR users (preview April 2026)."
+      ]
+    }
+  ]
+}

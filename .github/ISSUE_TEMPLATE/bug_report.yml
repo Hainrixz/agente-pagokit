@@ -1,0 +1,94 @@
+name: Bug report
+description: Something in PagoKit isn't working as expected
+title: "[bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. Before submitting, please check that:
+        - [ ] The issue is reproducible in a fresh project (not a pre-existing mess in your codebase)
+        - [ ] You're on Claude Code 2.x and Node.js ≥ 18
+        - [ ] If it's a security issue, report privately per [SECURITY.md](../blob/main/SECURITY.md) instead
+
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude Code version
+      description: Run `claude --version`
+      placeholder: "2.1.x"
+    validations:
+      required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: PagoKit version / commit
+      description: Tag (e.g. v0.1.0) or commit SHA
+      placeholder: "v0.1.0 or 8e71d31"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Payment provider
+      options:
+        - Stripe
+        - Mercado Pago
+        - Wompi
+        - Lemon Squeezy
+        - Other / not provider-specific
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Stack
+      options:
+        - Next.js (App Router)
+        - Next.js (Pages Router)
+        - Express
+        - FastAPI
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen.
+      placeholder: |
+        I ran /pagokit:start and...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to trigger the bug.
+      placeholder: |
+        1. Fresh `npx create-next-app`
+        2. Add `package.json` with...
+        3. Run `claude --plugin-dir .../agente-pagokit`
+        4. /pagokit:start
+        5. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: validator-output
+    attributes:
+      label: Validator output (if applicable)
+      description: If a hook blocked or warned, paste the JSON stderr output.
+      render: json
+
+  - type: textarea
+    id: integration-md
+    attributes:
+      label: PAGOKIT_INTEGRATION.md (if it exists)
+      description: Paste the audit trail PagoKit generated.
+      render: markdown

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Hainrixz/agente-pagokit/schemas/providers.schema.json",
+  "title": "PagoKit Providers",
+  "description": "Schema for skills/payment-advisor/data/providers.json. Each entry describes a payment provider with regions, fees, security details and ranking modifiers.",
+  "type": "object",
+  "required": ["providers"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "providers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/provider"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "last_verified_at",
+        "verified_by",
+        "status",
+        "regions",
+        "currencies",
+        "methods",
+        "supports",
+        "kyc",
+        "secret_key_pattern",
+        "developer_experience",
+        "webhook",
+        "docs_url"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "name": {"type": "string", "minLength": 1},
+        "last_verified_at": {"type": "string", "format": "date"},
+        "verified_by": {"enum": ["human", "llm-generated"]},
+        "status": {"enum": ["active", "legacy", "preview", "deprecated"]},
+        "acquired_by": {"type": "string"},
+        "successor": {"type": "string"},
+        "regions": {"type": "array", "items": {"type": "string", "minLength": 2}, "minItems": 1},
+        "currencies": {"type": "array", "items": {"type": "string", "pattern": "^[A-Z]{3}$"}, "minItems": 1},
+        "methods": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "supports": {
+          "type": "object",
+          "required": ["subscriptions", "one_time", "marketplace_payouts", "merchant_of_record"],
+          "properties": {
+            "subscriptions": {"type": "boolean"},
+            "one_time": {"type": "boolean"},
+            "marketplace_payouts": {"type": "boolean"},
+            "merchant_of_record": {"type": "boolean"},
+            "tokenization_owner": {"enum": ["provider", "merchant", "shared"]},
+            "save_card": {"type": "boolean"},
+            "iap_compatible": {"type": "boolean"},
+            "agentic_toolkit": {"type": "boolean"},
+            "stablecoin_settlement": {"type": "boolean"},
+            "cash_voucher": {"type": ["boolean", "object"]},
+            "installments": {"type": ["boolean", "object"]},
+            "qr": {"type": ["boolean", "object"]}
+          },
+          "additionalProperties": true
+        },
+        "tax_handling": {"type": "object", "additionalProperties": true},
+        "fees": {
+          "type": "object",
+          "properties": {
+            "card_domestic_pct": {"type": "number"},
+            "card_domestic_fixed_usd": {"type": "number"},
+            "card_domestic_fixed_cop": {"type": "number"},
+            "card_domestic_fixed_mxn": {"type": "number"},
+            "card_international_pct": {"type": "number"},
+            "eea_card_pct": {"type": "number"},
+            "eea_card_fixed_eur": {"type": "number"},
+            "usdc_pct": {"type": "number"},
+            "subscription_surcharge_pct": {"type": "number"},
+            "international_card_surcharge_pct": {"type": "number"},
+            "chargeback_fixed_usd": {"type": "number"},
+            "notes": {"type": "string"}
+          },
+          "additionalProperties": true
+        },
+        "kyc": {
+          "type": "object",
+          "required": ["individual_allowed"],
+          "properties": {
+            "individual_allowed": {"type": "boolean"},
+            "business_required_countries": {"type": "array", "items": {"type": "string"}},
+            "individual_constraints": {"type": "object", "additionalProperties": true},
+            "time_to_activate_days": {"type": "string"}
+          },
+          "additionalProperties": true
+        },
+        "developer_experience": {
+          "type": "object",
+          "required": ["sdk_quality", "docs_quality", "sandbox"],
+          "properties": {
+            "sdk_quality": {"type": "integer", "minimum": 1, "maximum": 5},
+            "docs_quality": {"type": "integer", "minimum": 1, "maximum": 5},
+            "sandbox": {"type": "boolean"},
+            "test_keys_prefix": {"type": "string"},
+            "live_keys_prefix": {"type": "string"}
+          }
+        },
+        "secret_key_pattern": {"type": "string"},
+        "publishable_key_pattern": {"type": "string"},
+        "sdks": {"type": "object", "additionalProperties": true},
+        "api_version": {"type": "string"},
+        "recommended_api_flow": {"type": "string"},
+        "deprecated_flows": {"type": "array", "items": {"type": "string"}},
+        "webhook": {
+          "type": "object",
+          "required": [
+            "signature_header",
+            "algorithm",
+            "signature_includes_timestamp",
+            "replay_mitigation_strategy",
+            "expected_filenames",
+            "required_events_minimum"
+          ],
+          "properties": {
+            "signature_header": {"type": "string"},
+            "algorithm": {"type": "string"},
+            "signature_includes_timestamp": {"type": "boolean"},
+            "recommended_tolerance_seconds": {"type": "integer", "minimum": 0},
+            "replay_mitigation_strategy": {"enum": ["timestamp-window", "event-id-dedup", "both", "none"]},
+            "required_events_minimum": {"type": "array", "items": {"type": "string"}},
+            "expected_filenames": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+            "ip_allowlist_available": {"type": "boolean"}
+          },
+          "additionalProperties": true
+        },
+        "frontend_options": {
+          "type": "array",
+          "items": {"enum": ["hosted", "embedded", "widget", "drop-in", "redirect", "elements", "bricks"]},
+          "minItems": 1
+        },
+        "anti_patterns": {"type": "array", "items": {"type": "string"}},
+        "test_cards": {
+          "type": "object",
+          "properties": {
+            "success": {"type": "string"},
+            "decline": {"type": "string"},
+            "insufficient_funds": {"type": "string"},
+            "three_d_secure": {"type": "string"}
+          },
+          "additionalProperties": true
+        },
+        "docs_url": {"type": "string", "format": "uri"},
+        "score_modifiers": {
+          "type": "object",
+          "additionalProperties": {"type": "number"}
+        },
+        "notes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    }
+  }
+}

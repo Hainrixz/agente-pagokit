@@ -1,0 +1,174 @@
+{
+  "$schema": "../../../schemas/regions.schema.json",
+  "regions": {
+    "US": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "en"
+    },
+    "CA": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "CAD",
+      "language": "en"
+    },
+    "MX": {
+      "primary_providers": ["mercadopago", "stripe"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "MXN",
+      "language": "es"
+    },
+    "CO": {
+      "primary_providers": ["wompi", "mercadopago"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "COP",
+      "language": "es"
+    },
+    "AR": {
+      "primary_providers": ["mercadopago"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "ARS",
+      "language": "es"
+    },
+    "BR": {
+      "primary_providers": ["mercadopago", "stripe"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "BRL",
+      "language": "pt"
+    },
+    "CL": {
+      "primary_providers": ["mercadopago"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "CLP",
+      "language": "es"
+    },
+    "PE": {
+      "primary_providers": ["mercadopago"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "PEN",
+      "language": "es",
+      "comment": "Niubiz, Culqi, Izipay ship in Phase 2."
+    },
+    "UY": {
+      "primary_providers": ["mercadopago"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "UYU",
+      "language": "es"
+    },
+    "BO": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "BOB",
+      "language": "es",
+      "comment": "Bolivia: limited local coverage in Phase 1. Fallback to MoR (Lemon Squeezy) recommended."
+    },
+    "EC": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "es",
+      "comment": "Ecuador: PayPhone/Kushki/Datafast ship in Phase 2. Phase 1 falls back to Lemon Squeezy."
+    },
+    "VE": {
+      "primary_providers": [],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "USD",
+      "language": "es",
+      "comment": "Venezuela: limited local coverage; crypto and USD informal channels dominate."
+    },
+    "UK": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "GBP",
+      "language": "en"
+    },
+    "ES": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "es"
+    },
+    "DE": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "de"
+    },
+    "FR": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "fr"
+    },
+    "NL": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "nl",
+      "comment": "Mollie / iDEAL ship in Phase 2."
+    },
+    "IT": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "it"
+    },
+    "PT": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "EUR",
+      "language": "pt"
+    },
+    "IN": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "INR",
+      "language": "en",
+      "comment": "Razorpay / Cashfree / PhonePe ship in Phase 2."
+    },
+    "NG": {
+      "primary_providers": ["lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "NGN",
+      "language": "en",
+      "comment": "Paystack / Flutterwave ship in Phase 2."
+    },
+    "ZA": {
+      "primary_providers": ["lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "ZAR",
+      "language": "en"
+    },
+    "AU": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "AUD",
+      "language": "en"
+    },
+    "NZ": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "NZD",
+      "language": "en"
+    },
+    "SG": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "SGD",
+      "language": "en"
+    },
+    "JP": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "JPY",
+      "language": "ja"
+    },
+    "HK": {
+      "primary_providers": ["stripe", "lemonsqueezy"],
+      "fallback_cross_border_mor": ["lemonsqueezy"],
+      "default_currency": "HKD",
+      "language": "en"
+    }
+  }
+}
